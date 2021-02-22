@@ -19,10 +19,10 @@ namespace UIX_PlayerList
 
 		public override void OnApplicationStart()
 		{
-            MelonPrefs.RegisterCategory("UIXPlayerList", "UIX Player List");
-            MelonPrefs.RegisterString("UIXPlayerList", "MenuStyle", "List", "Menu Style");
-            MelonPrefs.RegisterBool("UIXPlayerList", "Sort", true, "Alphabetical Sort");
-            MelonPrefs.RegisterBool("UIXPlayerList", "HideSelf", false, "Hide Self");
+            MelonPreferences.CreateCategory("UIXPlayerList", "UIX Player List");
+            MelonPreferences.CreateEntry<string>("UIXPlayerList", "MenuStyle", "List", "Menu Style");
+            MelonPreferences.CreateEntry<bool>("UIXPlayerList", "Sort", true, "Alphabetical Sort");
+            MelonPreferences.CreateEntry<bool>("UIXPlayerList", "HideSelf", false, "Hide Self");
         }
 
 
@@ -45,15 +45,14 @@ namespace UIX_PlayerList
             updateValues();
 
         }
-
-		public override void OnModSettingsApplied()
-		{
+		public override void OnPreferencesSaved()
+        {
             updateValues();
         }
 
         public void updateValues()
 		{
-            switch (MelonPrefs.GetString("UIXPlayerList", "MenuStyle"))
+            switch (MelonPreferences.GetEntryValue<string>("UIXPlayerList", "MenuStyle"))
             {
                 case "List":
                     style = LayoutDescription.WideSlimList;
@@ -68,8 +67,8 @@ namespace UIX_PlayerList
                     style = LayoutDescription.WideSlimList;
                     break;
             }
-            alphabetical = MelonPrefs.GetBool("UIXPlayerList", "Sort");
-            hideSelf = MelonPrefs.GetBool("UIXPlayerList", "HideSelf");
+            alphabetical = MelonPreferences.GetEntryValue<bool>("UIXPlayerList", "Sort");
+            hideSelf = MelonPreferences.GetEntryValue<bool>("UIXPlayerList", "HideSelf");
         }
 
 
@@ -100,7 +99,7 @@ namespace UIX_PlayerList
 				}
 				else
 				{
-                    playerMenu.AddSimpleButton("List Empty", null);
+                    playerMenu.AddLabel("List Empty");
                 }
 			}
 			else

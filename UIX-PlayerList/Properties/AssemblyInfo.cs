@@ -36,6 +36,6 @@ using MelonLoader;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: MelonInfo(typeof(UIX_PlayerList.Main), "UIX Player List", "1.0.0", "Dannie")]
+[assembly: MelonInfo(typeof(UIX_PlayerList.Main), "UIX Player List", "1.1.0", "Dannie")]
 [assembly: MelonGame("VRChat", "VRChat")]
 [assembly: MelonOptionalDependencies("UIExpansionKit")]
